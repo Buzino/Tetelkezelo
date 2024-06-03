@@ -16,6 +16,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <script defer>
+        function elvetes() {
+            //Figyelmeztető a módosítások elvetéséről.
+            if (confirm("Biztosan kilép?\nA módosítások elvetésre kerülnek.")) {
+                window.open("index.php", "_self");
+            }
+        }
+        function torles() {
+            //Figyelmeztető a törlésről
+            if (confirm("Biztosan törölni szeretné? A művelet nem visszavonható!")) {
+                document.querySelector("#torol").submit();
+            }
+        }
+    </script>
+
     <div class="tartalom">
         <header>
             <h1>Tételkezelő</h1>
@@ -23,7 +39,7 @@
         <main>
             <!--Menü-->
             <nav>
-                <h2>Menü</h2>
+                <h2><a href="index.php">Menü</a></h2>
                 <a href="">Kézikönyv</a>
             </nav>
             <!--Módosítás form-->
@@ -54,6 +70,7 @@
                 <div class="modositgombok">
                     <button type="submit" name="ment" value="1" onclick="mentes()">Mentés</button>
                     <button type="button" name="megsem" value="1" onclick="elvetes()">Mégsem</button>
+                    <button type="button" name="torol" value="1" onclick="torles()" class="torol" id="torolgomb">Törlés</button>
                 </div>
               </fieldset>
             <?php 
@@ -61,22 +78,22 @@
             //ha új tételt adunk hozzá, akkor a legmagasabb azonosító+1-es azonosítót kapja
             if (!isset($_POST["tetelid"])) {
                 $tetelid = intval($conn->query("SELECT MAX(id) AS maxid FROM tetelek;")->fetch_assoc()["maxid"]) + 1;
+                echo '<script>document.querySelector("#torolgomb").disabled=true;</script>';
             } else {
                 $tetelid = $tetel["tetelid"] ?? $_POST["tetelid"];
+                echo '<script>document.querySelector("#torolgomb").disabled=false;</script>';
             }
             ?>
             <input type="hidden" name="tetelid" value="<?=$tetelid?>">
             </form>
         </main>
     </div>
-    <script defer>
-        function elvetes() {
-            //Figyelmeztető a módosítások elvetéséről.
-            if (confirm("Biztosan kilép?\nA módosítások elvetésre kerülnek.")) {
-                window.open("index.php", "_self");
-            }
-        }
-    </script>
+
+    <form action="modify.php" method="post" id="torol">
+        <input type="hidden" name="tetelid" value="<?=$tetelid?>">
+        <input type="hidden" name="torol" value="1">
+    </form>
+
     <?php
     if (isset($_POST["ment"])) {
         try {
@@ -93,12 +110,19 @@
                     break;
             }
             //a tétel hozzáadása/frissítése (a REPLACE INTO mindkettőre képes (^v^) )
-            $conn->query("REPLACE INTO tetelek (id, tantargyid, sorszam, cim, vazlat, kidolgozas, modositva) VALUES (".$_POST["tetelid"].", ".$targyid.", ".$_POST["sorszam"].", '".$_POST["cim"]."', '".$_POST["vazlat"]."', '".$_POST["kidolgozas"]."', '".date("Y-m-d")."')");
+            $conn->query("REPLACE INTO tetelek (id, tantargyid, sorszam, cim, vazlat, kidolgozas, modositva) VALUES (".$_POST["tetelid"].", ".$targyid.", ".$_POST["sorszam"].", '".htmlentities($_POST["cim"])."', '".htmlentities($_POST["vazlat"])."', '".htmlentities($_POST["kidolgozas"])."', '".date("Y-m-d")."')");
             echo '<script>alert("A változtatások mentésre kerültek."); window.open("index.php", "_self")</script>';
         } catch (Exception $ä) {
             //hiba esetén jelezzük a hibát, és nem léptetjük vissza a felhasználót a főoldalra
             echo '<script>alert("Hiba történt a feltöltés során. A változások nem kerültek mentésre.\nHiba: '.$ä->getMessage().'")</script>';
         }
+    }
+
+    if (isset($_POST["torol"]) && isset($_POST["tetelid"])) {
+        if ($conn->query("SELECT COUNT(*) AS db FROM tetelek WHERE id = ".$_POST["tetelid"])->fetch_assoc()["db"] > 0) {
+            $conn->query("DELETE FROM tetelek WHERE id = ".$_POST["tetelid"]);
+        }
+        echo '<script>alert("Tétel sikeresen törölve!"); window.open("index.php","_self")</script>';
     }
     ?>
 </body>

@@ -17,7 +17,7 @@
         <main>
             <!--Menü-->
             <nav>
-                <h2>Menü</h2>
+                <h2><a href="index.php">Menü</a></h2>
                 <a href="modify.php">Új tétel</a>
                 <a href="">Kézikönyv</a>
             </nav>
@@ -25,7 +25,7 @@
             <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" class="keres">
               <fieldset>
                 <legend>Keresés</legend>
-                <label for="szoveg">Keresés szövege:</label> <input type="text" name="szoveg" id="szoveg" value="<?=($_POST["szoveg"] ?? '')?>">
+                <label for="szoveg">Keresés szövege:</label> <input type="text" name="szoveg" id="szoveg" value="<?php if (isset($_POST["szurotorol"])) echo ""; else echo ($_POST["szoveg"] ?? '');?>">
                 <br>
                 <label for="targy">Szűrés tantárgyra:</label>
                 <select name="targy" id="targy">
@@ -41,7 +41,7 @@
                 <br>
                 <button type="submit" name="keres" value="1">Keres</button>
                 <br>
-                <button type="submit" name="torolszuro" value="1">Szűrők törlése</button>
+                <button type="submit" class="torol" name="szurotorol" value="1">Szűrők törlése</button>
               </fieldset>
             </form>
             <!--A találatok kilistázása-->
