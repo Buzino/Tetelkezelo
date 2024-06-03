@@ -15,24 +15,27 @@
             <h1>Tételkezelő</h1>
         </header>
         <main>
+            <!--Menü-->
             <nav>
                 <h2>Menü</h2>
                 <a href="modify.php">Új tétel</a>
                 <a href="">Kézikönyv</a>
             </nav>
-            <form action="" method="post" class="keres">
+            <!--Keresés form-->
+            <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" class="keres">
               <fieldset>
                 <legend>Keresés</legend>
                 <label for="szoveg">Keresés szövege:</label> <input type="text" name="szoveg" id="szoveg" value="<?=($_POST["szoveg"] ?? '')?>">
                 <br>
                 <label for="targy">Szűrés tantárgyra:</label>
                 <select name="targy" id="targy">
+                    <!--tantárgyak lekérése az adatbázisból-->
                     <option value="" <?php if (($_POST["targy"] ?? "") == "") echo "selected";?>>Nincs megadva</option>
                     <?php 
                         $result = $conn->query("SELECT id, nev FROM targyak ORDER BY nev ASC")->fetch_all(MYSQLI_ASSOC);
                         foreach ($result as $targy):
-                    ?>
-                    <option value="<?=$targy["id"]?>" <?php if (($_POST["targy"] ?? false) == $targy["id"]) echo "selected"?>><?=$targy["nev"]?></option>
+                        ?>
+                        <option value="<?=$targy["id"]?>" <?php if (($_POST["targy"] ?? false) == $targy["id"]) echo "selected"?>><?=$targy["nev"]?></option>
                     <?php endforeach;?>
                 </select>
                 <br>
@@ -41,16 +44,53 @@
                 <button type="submit" name="torolszuro" value="1">Szűrők törlése</button>
               </fieldset>
             </form>
+            <!--A találatok kilistázása-->
             <div class="talalatok">
                 <h2><?=isset($_POST["keres"]) ? "Talált tételek" : "Tételek"?></h2>
-                <!--Találatok legenerálása-->
-                <div class="tetel">
-                    <h3>Tétel címe</h3>
-                    <p>Tantárgy: <br>Feltöltve: </p>
-                    <p>3 sor a vázlatból</p>
-                    <p>3 sor a kidolgozásból</p>
-                    <p><a href="">Tovább a tételre</a></p>
-                </div>
+                
+                <?php
+                $lekeres = "SELECT tetelek.id AS tetelid, targyak.nev AS targy, sorszam, modositva, cim, vazlat, kidolgozas FROM tetelek INNER JOIN targyak ON tetelek.tantargyid = targyak.id ";
+                if (isset($_POST["keres"])) {
+                    $lekeres .= "WHERE ";
+                    
+                    if ($_POST["szoveg"] != "") {
+                        if (is_numeric($_POST['szoveg'])) {
+                            //ha a keresőmezőben szám van, akkor sorszám alapján keresünk...
+                            $lekeres .= ' sorszam = '.$_POST["szoveg"].' ';
+                        } else {
+                            //...egyébként a tétel címében
+                            $lekeres .= ' cim LIKE "%'.$_POST["szoveg"].'%" ';
+                        }
+                        $kellés = true; //logikai érték, hogy kell-e 'AND' a következő feltételhez
+                    }
+
+                    if ($_POST["targy"] != "") {
+                        if ($kellés ?? false) $lekeres .= ' AND ';
+                        $lekeres .= ' tantargyid = '.$_POST["targy"];
+                        $kellés = true; //logikai érték, hogy kell-e 'AND' a következő feltételhez
+                    }
+
+                    if ($kellés ?? false) $lekeres .= ' AND ';
+                    $lekeres .= "1";    //1-es hozzáadása, ha feltétel nélkül szűrnénk
+                }
+
+                //echo $lekeres;
+
+                $result = $conn -> query($lekeres);
+                while (($r = $result->fetch_assoc()) != null):
+                ?>
+                <form action="view.php" method="post" class="tetel">
+                    <h3><?=$r["sorszam"]?>. <?=$r["cim"]?></h3>
+                    <p>
+                        Tantárgy: <b><?=$r["targy"]?></b>
+                        <br>
+                        Legutoljára módosítva: <b><?=$r["modositva"]?></b>
+                    </p>
+                    <p class="maxnsor" style="--maxnsor:5"><?=str_replace("\r\n","<br>", $r["vazlat"])?></p>    <!--a sortörések megjelenítése érdekes...-->
+                    <p class="maxnsor" style="--maxnsor:5"><?=str_replace("\r\n","<br>", $r["kidolgozas"])?></p>
+                    <p><button type="submit" name="tetelid" value="<?=$r["tetelid"]?>">Tovább a tételre</button></p>
+                </form>
+                <?php endwhile;?>
             </div>
         </main>
     </div>

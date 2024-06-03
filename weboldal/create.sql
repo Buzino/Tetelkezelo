@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `tetelek` (
 	cim        	TEXT,
 	vazlat     	LONGTEXT,
 	kidolgozas 	LONGTEXT,
+	modositva	DATE,
 	FOREIGN KEY (`tantargyid`) REFERENCES `targyak`(`id`)
 );
 

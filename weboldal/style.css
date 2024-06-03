@@ -79,3 +79,11 @@ form textarea {
     width: 100%;
     resize: vertical;
 }
+
+.maxnsor {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: var(--maxnsor);
+    -webkit-line-clamp: var(--maxnsor);
+    overflow: hidden;
+}
