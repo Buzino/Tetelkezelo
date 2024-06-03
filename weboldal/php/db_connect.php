@@ -29,7 +29,3 @@ function futtatParancs($connection, $sql) {
     }
     //echo "Kész a eskuel.";
 }
-
-function futtatLekerdezes($connection, $sql) {
-    return $connection->query($sql);
-}
