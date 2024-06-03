@@ -19,7 +19,7 @@ namespace tételkezelő
         }
         private SqlConnection ConnectToDatabase()
         {
-            string connectionString = "YourConnectionString";
+            string connectionString = "";
             return new SqlConnection(connectionString);
         }
         private void LoadDataIntoDGV()
