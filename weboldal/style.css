@@ -1,0 +1,54 @@
+header {
+    text-align: center;
+}
+
+nav > * {
+    display: inline-block;
+}
+
+.tartalom {
+    width: 100%;
+    min-width: 300px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form.keres {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset {
+    line-height: 200%;
+}
+
+fieldset legend {
+    line-height: 100%;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+form.keres input,
+form.keres select,
+form.keres option,
+form.keres button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 2px;
+}
+
+button {
+    box-sizing: border-box;
+    padding: 5px 2px;
+}
+
+form.keres button:nth-of-type(1) {
+    margin-top: 15px;
+}
+
+button[name^="torol"] {
+    background-color: gray;
+    color: red;
+}
