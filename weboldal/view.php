@@ -18,7 +18,7 @@
             <!--Menü-->
             <nav>
                 <h2><a href="index.php">Menü</a></h2>
-                <a href="">Kézikönyv</a>
+                <a href="manual.html">Kézikönyv</a>
             </nav>
             <!--A tétel-->
             <?php

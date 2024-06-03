@@ -40,7 +40,7 @@
             <!--Menü-->
             <nav>
                 <h2><a href="index.php">Menü</a></h2>
-                <a href="">Kézikönyv</a>
+                <a href="manual.html">Kézikönyv</a>
             </nav>
             <!--Módosítás form-->
             <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" class="keres modosit">
