@@ -9,3 +9,5 @@ D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tét
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.CoreCompileInputs.cache
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.exe
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.pdb
+D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\bin\Debug\MySql.Data.dll
+D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.CopyComplete

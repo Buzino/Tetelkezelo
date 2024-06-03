@@ -19,7 +19,7 @@ namespace tételkezelő
         }
         private SqlConnection ConnectToDatabase()
         {
-            string connectionString = "";
+            string connectionString = "server=localhost;user=root;password='';database='tetelkezelo'";
             return new SqlConnection(connectionString);
         }
         private void LoadDataIntoDGV()
@@ -29,15 +29,7 @@ namespace tételkezelő
                 try
                 {
                     conn.Open();
-                    string query = @"
-                SELECT tetelek.id AS TetelekId, 
-                       tetelek.sorszam AS SorSzam, 
-                       tetelek.cim AS Cim, 
-                       tetelek.vazlat AS Vazlat, 
-                       tetelek.kidolgozas AS Kidolgozas,
-                       targyak.nev AS Nev
-                FROM tetelek
-                INNER JOIN targyak ON tetelek.tantargyid = targyak.id";
+                    string query = @"SELECT * FROM tetelek INNER JOIN targyak ON tetelek.tantargyid = targyak.id";
 
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
