@@ -52,3 +52,24 @@ button[name^="torol"] {
     background-color: gray;
     color: red;
 }
+
+div.modositgombok {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+div.modositgombok button {
+    width: 50%;
+}
+
+@media (max-width: 500px) {
+    div.modositgombok button {
+        width: 100%;
+    }
+}
+
+div.modositgombok button:nth-of-type(1) {
+    margin-top: auto;
+}
