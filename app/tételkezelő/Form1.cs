@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace tételkezelő
 {
@@ -17,25 +18,31 @@ namespace tételkezelő
         {
             InitializeComponent();
         }
-        private SqlConnection ConnectToDatabase()
+        private MySqlConnection ConnectToDatabase()
         {
             string connectionString = "server=localhost;user=root;password='';database='tetelkezelo'";
-            return new SqlConnection(connectionString);
+            return new MySqlConnection(connectionString);
         }
         private void LoadDataIntoDGV()
         {
-            using (SqlConnection conn = ConnectToDatabase())
+            using (MySqlConnection conn = ConnectToDatabase())
             {
                 try
                 {
                     conn.Open();
-                    string query = @"SELECT * FROM tetelek INNER JOIN targyak ON tetelek.tantargyid = targyak.id";
+                    string query = @"SELECT targyak.nev, tetelek.sorszam, tetelek.cim, tetelek.vazlat, tetelek.kidolgozas, tetelek.modositva FROM tetelek INNER JOIN targyak ON tetelek.tantargyid = targyak.id";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
                     tetelekDGV.DataSource = dt;
+
+                    tetelekDGV.AutoResizeColumn(0);
+                    tetelekDGV.AutoResizeColumn(1);
+                    tetelekDGV.AutoResizeColumn(2);
+                    tetelekDGV.AutoResizeColumn(5);
+
                 }
                 catch (Exception ex)
                 {
@@ -47,6 +54,10 @@ namespace tételkezelő
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadDataIntoDGV();
+        }
+        private void tetelekDGVchanged()
+        {
+            tetelekDGV.cell
         }
     }
 }

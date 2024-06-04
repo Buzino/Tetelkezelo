@@ -35,10 +35,12 @@
             // tetelekDGV
             // 
             this.tetelekDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tetelekDGV.Location = new System.Drawing.Point(73, 143);
+            this.tetelekDGV.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.tetelekDGV.Location = new System.Drawing.Point(73, 61);
             this.tetelekDGV.Name = "tetelekDGV";
-            this.tetelekDGV.Size = new System.Drawing.Size(821, 424);
+            this.tetelekDGV.Size = new System.Drawing.Size(821, 506);
             this.tetelekDGV.TabIndex = 0;
+            this.tetelekDGV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler((_sender, _e) => { tetelekDGVchanged(); });
             // 
             // Form1
             // 
@@ -47,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(1022, 622);
             this.Controls.Add(this.tetelekDGV);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Tetelkezelo";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tetelekDGV)).EndInit();
             this.ResumeLayout(false);
