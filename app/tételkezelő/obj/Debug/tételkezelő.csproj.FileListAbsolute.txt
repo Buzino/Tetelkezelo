@@ -11,3 +11,13 @@ D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tét
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.pdb
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\bin\Debug\MySql.Data.dll
 D:\Program Files (x86)\xampp\htdocs\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.CopyComplete
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\bin\Debug\tételkezelő.exe.config
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\bin\Debug\tételkezelő.exe
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\bin\Debug\tételkezelő.pdb
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.AssemblyReference.cache
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.Form1.resources
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.Properties.Resources.resources
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.GenerateResource.cache
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.csproj.CoreCompileInputs.cache
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.exe
+D:\levi(Nacs)\Tetelkezelo\app\tételkezelő\obj\Debug\tételkezelő.pdb
