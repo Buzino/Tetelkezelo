@@ -29,3 +29,7 @@ function futtatParancs($connection, $sql) {
     }
     //echo "Kész a eskuel.";
 }
+
+//szinhez
+session_start();
+$_SESSION["h"] = $_POST["hue"] ?? 230;

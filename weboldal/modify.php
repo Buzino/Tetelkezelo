@@ -33,15 +33,22 @@
     </script>
 
     <div class="tartalom">
+        <div class="szin">
+            <span class="grad"></span>
+            <input type="range" name="h" id="h" min=0 max=359 step=1 value=230 onchange="szin()">
+        </div>
         <header>
             <h1>Tételkezelő</h1>
         </header>
+        <!--Menü-->
+        <nav>
+            <ul>
+                <li><h2><a href="index.php">Menü</a></li>
+                <li><a href="manual.php">Kézikönyv</a></li>
+            </ul>
+        </nav>
         <main>
-            <!--Menü-->
-            <nav>
-                <h2><a href="index.php">Menü</a></h2>
-                <a href="manual.html">Kézikönyv</a>
-            </nav>
+            
             <!--Módosítás form-->
             <form action="<?=$_SERVER["PHP_SELF"]?>" method="post" class="keres modosit">
               <fieldset>
@@ -125,5 +132,7 @@
         echo '<script>alert("Tétel sikeresen törölve!"); window.open("index.php","_self")</script>';
     }
     ?>
+    
+    <script defer src="app.js"></script>
 </body>
 </html>

@@ -1,17 +1,102 @@
-header {
-    text-align: center;
+:root {
+    --szin: 200;
+    --primary: hsl(var(--szin), 50%, 25%);
+    --secondary: hsl(0, 0%, 100%);
+    --tetriary: hsl(var(--szin), 50%, 50%);
+    --negyedik: hsl(var(--szin), 50%, 63%);
+    --otodik: hsl(var(--szin), 50%, 33%);
 }
 
-nav > * {
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a, a:link, a:hover, a:active, a:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+html {
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    background-image: url('1426992.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment:fixed;
+}
+
+body > * {
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+nav {
+    background-color: var(--tetriary);
+    padding: 0 10px;
+    height: fit-content;
+}
+
+nav * {
     display: inline-block;
+    list-style: none;
+}
+
+nav h2 {
+    padding: -10px 20px !important; 
+    margin: 0 !important;
+    font-size: 100% !important;
+}
+
+nav ul {
+    margin: 0;
+    height: fit-content;
+}
+
+nav ul li {
+    height: fit-content;
+}
+
+nav ul li a {
+    height: 100%;
+    padding: 20px 30px;
+}
+
+nav ul li a:hover {
+    background-color: var(--negyedik);
 }
 
 .tartalom {
+    box-sizing: border-box;
     width: 100%;
     min-width: 300px;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    color: var(--secondary);
+    background-color: var(--primary);
+}
+
+main {
+    padding: 30px;
+}
+
+@media (max-width: 550px) {
+    main {
+        padding: 10px;
+    }
 }
 
 form.keres {
@@ -40,9 +125,43 @@ form.keres textarea {
     padding: 5px 2px;
 }
 
+legend {
+    padding: 0 10px;
+}
+
 button {
     box-sizing: border-box;
-    padding: 5px 2px;
+    padding: 10px 15px;
+    background-color: var(--tetriary);
+    color: var(--secondary);
+    border: var(--tetriary) 2px solid;
+}
+
+div.main form:not(.keres) button {
+    box-shadow: 2px 2px 10px 2px black;
+}
+
+button:hover {
+    cursor: pointer;
+    border-color: var(--secondary);
+}
+
+button:active {
+    border-color: var(--tetriary);
+}
+
+button:first-of-type {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+button:last-of-type {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+form.keres:not(.modosit) button {
+    border-radius: 10px;
 }
 
 form.keres button:nth-of-type(1) {
@@ -50,8 +169,19 @@ form.keres button:nth-of-type(1) {
 }
 
 button.torol {
-    background-color: gray;
-    color: red;
+    background-color: hsl(0, 50%, 25%);
+    border-color: hsl(0, 50%, 25%);
+    color: white;
+}
+
+button.torol:hover {
+    border-color: var(--secondary);
+}
+
+button:disabled {
+    background-color: hsl(0, 0%, 25%);
+    color: gray;
+    cursor:not-allowed;
 }
 
 div.modositgombok {
@@ -85,4 +215,58 @@ form textarea {
     line-clamp: var(--maxnsor);
     -webkit-line-clamp: var(--maxnsor);
     overflow: hidden;
+}
+
+input, select, textarea {
+    background-color: var(--negyedik);
+    color:white;
+}
+
+option:hover {
+    background-color: var(--primary);
+}
+
+.main h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.main h2 {
+    text-align: center;
+    font-size: 200%;
+}
+
+.tetel {
+    box-shadow: 5px 5px 15px 4px black;
+    border-radius: 20px;
+    padding: 15px 25px;
+    margin-top: 25px;
+    transition: all 0.33s ease-in-out;
+    background-color: var(--otodik);
+}
+
+.tetel:hover {
+    scale: 1.04;
+    box-shadow: 0px 5px 15px 4px black;
+}
+
+.manual main h1 {margin-top: 0px; font-size: 2.5em;}
+.manual h2 {margin-top: 40px; font-size: 2em;}
+.manual h3 {margin-top: 30px; font-size: 1.5em;}
+
+.szin input {
+    background-color: red;
+    width: 100%;
+}
+
+.szin {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+span.grad {
+    display: block;
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(90deg in hsl longer hue, hsl(0, 100%, 50%), hsl(359, 100%, 50%));
 }

@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="tartalom">
+    <div class="tartalom manual">
+        <div class="szin">
+            <span class="grad"></span>
+            <input type="range" name="h" id="h" min=0 max=359 step=1 value=230 onchange="szin()">
+        </div>
         <header>
             <h1>Tételkezelő</h1>
         </header>
+        <!--Menü-->
+        <nav>
+            <ul>
+                <li><h2><a style="pointer-events: none;">Menü</a></h2></li>
+                <li><a href="index.php">Vissza a főoldalra</a></li>
+            </ul>
+        </nav>
         <main>
-            <!--Menü-->
-            <nav>
-                <h2>Menü</h2>
-                <a href="index.php">Vissza a főoldalra</a>
-            </nav>
             <!--Leírás-->
             <h1>Használati útmutató</h1>
             <p>Ez az oldal egy használói utmutatóként szolgál a tételkezelő webes és asztali alkalmazáshoz.</p>
@@ -86,5 +92,7 @@
             <p>A program párbeszédablakban jelzi a sikeres feltöltést, vagy az éppen kialakult problémát. Sikeres feltöltés esetén a főoldalra kerülünk vissza.</p>
         </main>
     </div>
+    
+    <script defer src="app.js"></script>
 </body>
 </html>
